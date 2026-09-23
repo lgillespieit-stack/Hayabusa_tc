@@ -1,1 +1,2027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Hayabusa Training Centre | New Student Onboarding</title>
+
+<style>
+:root {
+  --black: #080808;
+  --panel: #151515;
+  --panel2: #1d1d1d;
+  --red: #d71920;
+  --red-light: #ff4b52;
+  --white: #ffffff;
+  --muted: #c9c9c9;
+  --line: #383838;
+  --green: #65cf98;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--black);
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ---------- HEADER ---------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  padding: 15px 20px;
+
+  background: rgba(8,8,8,.97);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  color: var(--white);
+  font-weight: 900;
+  letter-spacing: .06em;
+  font-size: 14px;
+}
+
+.brand span {
+  color: var(--red-light);
+}
+
+.menu-button,
+.primary-button,
+.secondary-button,
+.store-button {
+  min-height: 46px;
+  padding: 11px 17px;
+
+  border-radius: 8px;
+
+  font-weight: 900;
+  text-decoration: none;
+
+  transition: .2s;
+}
+
+.menu-button,
+.primary-button,
+.store-button {
+  background: var(--red);
+  border: 1px solid var(--red);
+  color: #fff;
+}
+
+.secondary-button {
+  background: #202020;
+  border: 1px solid #505050;
+  color: #fff;
+}
+
+.menu-button:hover,
+.primary-button:hover,
+.store-button:hover {
+  background: #ef2028;
+}
+
+.secondary-button:hover {
+  background: #303030;
+}
+
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+/* ---------- PROGRESS ---------- */
+
+.progress {
+  height: 5px;
+  background: #242424;
+}
+
+.progress-fill {
+  width: 10%;
+  height: 100%;
+
+  background: var(--red);
+
+  transition: width .3s ease;
+}
+
+/* ---------- PAGE ---------- */
+
+.stage {
+  max-width: 1050px;
+  margin: auto;
+
+  padding: 32px 22px 40px;
+}
+
+/* ---------- SECTION MENU ---------- */
+
+.section-menu {
+  display: none;
+
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 7px;
+
+  margin-bottom: 28px;
+  padding: 10px;
+
+  background: #101010;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.section-menu.open {
+  display: grid;
+}
+
+.section-menu button {
+  min-height: 50px;
+
+  padding: 11px 13px;
+
+  text-align: left;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.section-menu button:hover,
+.section-menu button.current {
+  background: #3b1315;
+}
+
+.section-menu b {
+  color: var(--red-light);
+  margin-right: 7px;
+}
+
+/* ---------- VIEWS ---------- */
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+  animation: fade .22s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+
+.kicker {
+  margin-bottom: 8px;
+
+  color: var(--red-light);
+
+  font-size: 11px;
+  font-weight: 900;
+
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 16px;
+
+  color: #fff;
+
+  font-size: clamp(36px,7vw,58px);
+  line-height: 1;
+
+  font-weight: 900;
+}
+
+.title span {
+  color: var(--red-light);
+}
+
+.lead {
+  max-width: 760px;
+
+  margin: 0 0 25px;
+
+  color: var(--muted);
+
+  font-size: 17px;
+}
+
+h1,
+h2,
+h3,
+strong {
+  color: #fff;
+}
+
+/* ---------- WELCOME ---------- */
+
+.welcome {
+  text-align: center;
+}
+
+.welcome-photo {
+  display: block;
+
+  width: 100%;
+  max-height: 480px;
+
+  object-fit: cover;
+
+  margin-bottom: 30px;
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.welcome .lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.welcome .primary-button {
+  display: inline-block;
+}
+
+/* ---------- CARDS ---------- */
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(2,minmax(0,1fr));
+
+  gap: 14px;
+}
+
+.card {
+  padding: 19px;
+
+  background: var(--panel);
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  color: #fff;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  color: #fff;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+/* ---------- IMAGES ---------- */
+
+.section-photo {
+  display: block;
+
+  width: 100%;
+  max-height: 480px;
+
+  object-fit: cover;
+
+  margin: 22px 0;
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+/* ---------- RASHGUARDS ---------- */
+
+.rashguards {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.rashguard {
+  overflow: hidden;
+
+  background: #fff;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.rashguard img {
+  display: block;
+
+  width: 100%;
+  height: 410px;
+
+  object-fit: contain;
+
+  background: #fff;
+}
+
+.rashguard-label {
+  padding: 11px;
+
+  background: #151515;
+  color: #fff;
+
+  text-align: center;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  letter-spacing: .05em;
+}
+
+/* ---------- NOTICE ---------- */
+
+.notice {
+  margin-top: 18px;
+
+  padding: 16px 18px;
+
+  background: #1b0d0e;
+
+  border-left: 4px solid var(--red);
+
+  color: #eee;
+}
+
+/* ---------- STEPS ---------- */
+
+.step {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 14px;
+}
+
+.number {
+  flex: 0 0 32px;
+
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--red);
+  color: #fff;
+
+  font-weight: 900;
+}
+
+/* ---------- COACHES ---------- */
+
+.coach {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.coach-avatar {
+  flex: 0 0 62px;
+
+  width: 62px;
+  height: 62px;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #272727;
+
+  border: 2px solid var(--red);
+  border-radius: 50%;
+
+  color: #fff;
+
+  font-weight: 900;
+}
+
+/* ---------- STORE ---------- */
+
+.store-area {
+  margin-top: 25px;
+
+  padding: 24px;
+
+  text-align: center;
+
+  background: #111;
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.store-area h3 {
+  margin-top: 0;
+}
+
+.store-area p {
+  color: var(--muted);
+}
+
+.store-button {
+  display: inline-block;
+
+  margin-top: 8px;
+
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+/* ---------- FAQ ---------- */
+
+.faq {
+  display: grid;
+
+  gap: 10px;
+}
+
+.faq details {
+  background: var(--panel);
+
+  border: 1px solid var(--line);
+  border-radius: 9px;
+
+  color: #fff;
+}
+
+.faq summary {
+  padding: 16px;
+
+  list-style: none;
+
+  cursor: pointer;
+
+  color: #fff;
+
+  font-weight: 900;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+
+  float: right;
+
+  color: var(--red-light);
+
+  font-size: 21px;
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq-answer {
+  padding: 0 16px 17px;
+
+  color: var(--muted);
+}
+
+/* ---------- CHECKLIST ---------- */
+
+.check {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 11px;
+
+  margin: 9px 0;
+
+  padding: 14px;
+
+  background: var(--panel);
+
+  border: 1px solid var(--line);
+  border-radius: 8px;
+
+  color: #fff;
+}
+
+.check input {
+  width: 19px;
+  height: 19px;
+
+  margin-top: 3px;
+
+  accent-color: var(--red);
+}
+
+.check.complete {
+  background: #132019;
+
+  border-color: #4f8060;
+}
+
+.count {
+  margin-top: 13px;
+
+  text-align: center;
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+/* ---------- BOTTOM NAV ---------- */
+
+.bottom-nav {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin-top: 32px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+  padding: 20px;
+
+  text-align: center;
+
+  background: #0c0c0c;
+
+  border-top: 1px solid var(--line);
+
+  color: #999;
+
+  font-size: 12px;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width:650px) {
+
+  .grid,
+  .section-menu.open,
+  .rashguards {
+    grid-template-columns: 1fr;
+  }
+
+  .wide {
+    grid-column: auto;
+  }
+
+  .stage {
+    padding: 25px 16px 35px;
+  }
+
+  .brand {
+    font-size: 11px;
+  }
+
+  .rashguard img {
+    height: 330px;
+  }
+
+  .bottom-nav button {
+    flex: 1;
+  }
+
+  .title {
+    font-size: 39px;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+<header class="topbar">
+
+  <div class="brand">
+    HAYABUSA <span>TRAINING CENTRE</span>
+  </div>
+
+  <button
+    class="menu-button"
+    id="menuButton"
+    type="button"
+    aria-expanded="false"
+  >
+    ☰ MENU
+  </button>
+
+</header>
+
+
+<div class="progress">
+
+  <div
+    class="progress-fill"
+    id="progressFill"
+  ></div>
+
+</div>
+
+
+<main class="stage">
+
+
+<!-- MENU -->
+
+<nav
+  class="section-menu"
+  id="sectionMenu"
+  aria-label="Onboarding sections"
+>
+
+  <button data-view="welcome">
+    <b>00</b> Welcome to the Team
+  </button>
+
+  <button data-view="gear">
+    <b>01</b> Uniform & Gear
+  </button>
+
+  <button data-view="culture">
+    <b>02</b> Gym Philosophy
+  </button>
+
+  <button data-view="disciplines">
+    <b>03</b> Disciplines
+  </button>
+
+  <button data-view="coaches">
+    <b>04</b> Meet the Coaches
+  </button>
+
+  <button data-view="belts">
+    <b>05</b> Belts & Progression
+  </button>
+
+  <button data-view="competition">
+    <b>06</b> Tournament Prep
+  </button>
+
+  <button data-view="store">
+    <b>07</b> Team Store
+  </button>
+
+  <button data-view="faq">
+    <b>FAQ</b> Common Questions
+  </button>
+
+  <button data-view="first30">
+    <b>08</b> First 30 Days
+  </button>
+
+</nav>
+
+
+<!-- WELCOME -->
+
+<section
+  class="view active"
+  data-page="welcome"
+>
+
+<div class="welcome">
+
+<img
+  src="images/team.jpg"
+  alt="Hayabusa Training Centre team"
+  class="welcome-photo"
+>
+
+<div class="kicker">
+  New Student Onboarding
+</div>
+
+<h1 class="title">
+  Welcome to <span>the Team.</span>
+</h1>
+
+<p class="lead">
+  Your interactive guide to training,
+  team culture, uniforms, progression
+  and competition at Hayabusa Training
+  Centre in St. Albert, Alberta.
+</p>
+
+<button
+  class="primary-button"
+  type="button"
+  data-next="gear"
+>
+  Start Your Journey →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- UNIFORM -->
+
+<section
+  class="view"
+  data-page="gear"
+>
+
+<div class="kicker">
+  01 — Get Ready
+</div>
+
+<h2 class="title">
+  Uniform & <span>Gear</span>
+</h2>
+
+<p class="lead">
+  The team uniform creates a consistent
+  look on the mats and ensures your gear
+  is appropriate for the class you're
+  attending.
+</p>
+
+
+<div class="grid">
+
+<div class="card">
+
+<h3>🥋 Gi Jiu-Jitsu</h3>
+
+<p>
+  Wear the current approved
+  <strong>team Gi</strong>
+  and the belt appropriate to your rank.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>⚡ No-Gi Jiu-Jitsu</h3>
+
+<p>
+  Wear the
+  <strong>
+    team rashguard and team shorts.
+  </strong>
+</p>
+
+</div>
+
+
+<div class="card wide">
+
+<h3>🧼 Clean Gear, Every Class</h3>
+
+<p>
+  Wash your Gi, rashguard and shorts
+  after every training session.
+  Air out your training bag and arrive
+  with clean equipment.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="rashguards">
+
+<div class="rashguard">
+
+<img
+  src="images/rashguard-front.jpg"
+  alt="Front of Hayabusa Training Centre team rashguard"
+>
+
+<div class="rashguard-label">
+  OFFICIAL TEAM RASHGUARD — FRONT
+</div>
+
+</div>
+
+
+<div class="rashguard">
+
+<img
+  src="images/rashguard-back.jpg"
+  alt="Back of Hayabusa Training Centre team rashguard"
+>
+
+<div class="rashguard-label">
+  OFFICIAL TEAM RASHGUARD — BACK
+</div>
+
+</div>
+
+</div>
+
+
+<div class="notice">
+
+<strong>Need gear?</strong>
+
+You can purchase approved team gear
+through the Hayabusa Training Centre
+team store.
+
+</div>
+
+</section>
+
+
+<!-- CULTURE -->
+
+<section
+  class="view"
+  data-page="culture"
+>
+
+<div class="kicker">
+  02 — The Culture
+</div>
+
+<h2 class="title">
+  You're Joining <span>a Team.</span>
+</h2>
+
+<p class="lead">
+  Training is about more than learning
+  techniques. It's about becoming a good
+  training partner, supporting the people
+  around you and continuing to improve.
+</p>
+
+
+<img
+  src="images/training.jpg"
+  alt="Students training at Hayabusa Training Centre"
+  class="section-photo"
+>
+
+
+<div class="grid">
+
+<div class="card">
+<h3>Respect</h3>
+<p>
+  Respect your coaches, teammates,
+  the facility and yourself.
+</p>
+</div>
+
+<div class="card">
+<h3>Consistency</h3>
+<p>
+  Progress comes from showing up
+  and training regularly.
+</p>
+</div>
+
+<div class="card">
+<h3>Safety</h3>
+<p>
+  Tap when needed, respect your
+  partner's tap and communicate
+  limitations.
+</p>
+</div>
+
+<div class="card">
+<h3>Team</h3>
+<p>
+  Help newer students and celebrate
+  your teammates.
+</p>
+</div>
+
+<div class="card">
+<h3>Progress</h3>
+<p>
+  Difficult classes and bad rounds
+  are part of learning.
+</p>
+</div>
+
+<div class="card">
+<h3>Community</h3>
+<p>
+  The people on the mats are an
+  important part of your journey.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DISCIPLINES -->
+
+<section
+  class="view"
+  data-page="disciplines"
+>
+
+<div class="kicker">
+  03 — Find Your Path
+</div>
+
+<h2 class="title">
+  Explore the <span>Disciplines</span>
+</h2>
+
+<p class="lead">
+  Explore the different ways to train.
+  Talk with a coach about which classes
+  fit your goals and experience.
+</p>
+
+
+<div class="grid">
+
+<div class="card">
+<h3>🥋 Brazilian Jiu-Jitsu</h3>
+<p>
+  Grappling, positional control,
+  escapes, transitions and submissions.
+</p>
+</div>
+
+<div class="card">
+<h3>⚡ No-Gi / Grappling</h3>
+<p>
+  Submission grappling without
+  the traditional Gi.
+</p>
+</div>
+
+<div class="card">
+<h3>🤼 Wrestling</h3>
+<p>
+  Takedowns, clinching and control.
+</p>
+</div>
+
+<div class="card">
+<h3>🥋 Judo</h3>
+<p>
+  Throws, gripping, takedowns and pins.
+</p>
+</div>
+
+<div class="card">
+<h3>🥊 Striking</h3>
+<p>
+  Technique, footwork, defence,
+  pad work and conditioning.
+</p>
+</div>
+
+<div class="card">
+<h3>🥊 MMA</h3>
+<p>
+  Training that combines striking
+  and grappling.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- COACHES -->
+
+<section
+  class="view"
+  data-page="coaches"
+>
+
+<div class="kicker">
+  04 — Meet Your Coaches
+</div>
+
+<h2 class="title">
+  People in <span>Your Corner</span>
+</h2>
+
+<p class="lead">
+  Get to know the people who will help
+  guide your training.
+</p>
+
+
+<div class="grid">
+
+<div class="card coach">
+
+<div class="coach-avatar">
+  LH
+</div>
+
+<div>
+
+<h3>Luke Harris</h3>
+
+<p>
+  Owner / Head Instructor.
+  Coach profile and additional
+  information will be added here.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card coach">
+
+<div class="coach-avatar">
+  T
+</div>
+
+<div>
+
+<h3>Coach Tyler</h3>
+
+<p>
+  Coach profile and additional
+  information will be added here.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BELTS -->
+
+<section
+  class="view"
+  data-page="belts"
+>
+
+<div class="kicker">
+  05 — Your Journey
+</div>
+
+<h2 class="title">
+  Belts & <span>Progression</span>
+</h2>
+
+<p class="lead">
+  Progress is built over time.
+  Your coaches are looking at more
+  than simply a class count.
+</p>
+
+
+<div class="grid">
+
+<div class="card step">
+
+<div class="number">1</div>
+
+<div>
+<h3>Consistency</h3>
+<p>
+  Build a regular training habit.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">2</div>
+
+<div>
+<h3>Technical Development</h3>
+<p>
+  Learn and understand the techniques
+  being taught.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">3</div>
+
+<div>
+<h3>Application</h3>
+<p>
+  Develop the ability to use your
+  skills during live training.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">4</div>
+
+<div>
+<h3>Attitude & Mat Maturity</h3>
+<p>
+  Train safely, respectfully and
+  become a better training partner.
+</p>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="notice">
+
+Exact Hayabusa Training Centre
+promotion and testing expectations
+can be added here once confirmed.
+
+</div>
+
+</section>
+
+
+<!-- COMPETITION -->
+
+<section
+  class="view"
+  data-page="competition"
+>
+
+<div class="kicker">
+  06 — Competition
+</div>
+
+<h2 class="title">
+  Tournament <span>Roadmap</span>
+</h2>
+
+<p class="lead">
+  Competition is optional.
+  If you'd like to compete,
+  start by talking with your coach.
+</p>
+
+
+<div class="grid">
+
+<div class="card step">
+
+<div class="number">1</div>
+
+<div>
+<h3>Talk to Your Coach</h3>
+<p>
+  Discuss the tournament,
+  experience level, Gi or No-Gi
+  and weight division.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">2</div>
+
+<div>
+<h3>Find the Event on Smoothcomp</h3>
+<p>
+  Create or update your athlete
+  profile and locate the tournament.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">3</div>
+
+<div>
+<h3>Select Your Division</h3>
+<p>
+  Confirm age, experience,
+  weight and rules before paying.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">4</div>
+
+<div>
+<h3>Prepare With the Team</h3>
+<p>
+  Follow your coach's
+  competition-preparation guidance.
+</p>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="notice">
+
+A future version can include
+screenshots and a click-by-click
+Smoothcomp registration tutorial.
+
+</div>
+
+</section>
+
+
+<!-- STORE -->
+
+<section
+  class="view"
+  data-page="store"
+>
+
+<div class="kicker">
+  07 — Team Store
+</div>
+
+<h2 class="title">
+  Get Your <span>Team Gear</span>
+</h2>
+
+<p class="lead">
+  The Hayabusa Training Centre
+  team store is where students
+  can purchase approved training
+  gear and team apparel.
+</p>
+
+
+<div class="grid">
+
+<div class="card step">
+
+<div class="number">1</div>
+
+<div>
+<h3>Open the Team Store</h3>
+<p>
+  Use the button below to visit
+  the official store.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">2</div>
+
+<div>
+<h3>Choose Your Gear</h3>
+<p>
+  Select your Gi, rashguard,
+  shorts or other team apparel.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">3</div>
+
+<div>
+<h3>Check Your Size</h3>
+<p>
+  If you're unsure about sizing,
+  ask a coach or staff member
+  before ordering.
+</p>
+</div>
+
+</div>
+
+
+<div class="card step">
+
+<div class="number">4</div>
+
+<div>
+<h3>Checkout</h3>
+<p>
+  Complete your purchase through
+  the team Shopify store.
+</p>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="store-area">
+
+<h3>
+  Ready to order?
+</h3>
+
+<p>
+  Open the official Hayabusa
+  Training Centre team store.
+</p>
+
+<a
+  class="store-button"
+  href="https://hayabusatc.myshopify.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  SHOP TEAM GEAR →
+</a>
+
+</div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section
+  class="view"
+  data-page="faq"
+>
+
+<div class="kicker">
+  Frequently Asked Questions
+</div>
+
+<h2 class="title">
+  Before You Hit <span>the Mats</span>
+</h2>
+
+<p class="lead">
+  Tap a question to see the answer.
+</p>
+
+
+<div class="faq">
+
+<details>
+<summary>
+  What should I wear to my first class?
+</summary>
+<div class="faq-answer">
+  Follow the current class-specific
+  uniform requirements. If you're unsure,
+  ask the academy before class.
+</div>
+</details>
+
+
+<details>
+<summary>
+  Do I need to be in shape before I start?
+</summary>
+<div class="faq-answer">
+  No. Training is one of the ways you'll
+  build fitness. Start at your own pace
+  and communicate with your coach.
+</div>
+</details>
+
+
+<details>
+<summary>
+  Do I need martial arts experience?
+</summary>
+<div class="faq-answer">
+  No. New students begin with fundamentals
+  and gradually build their skills.
+</div>
+</details>
+
+
+<details>
+<summary>
+  What if I don't understand a technique?
+</summary>
+<div class="faq-answer">
+  Ask questions. Learning takes time,
+  and everyone was new once.
+</div>
+</details>
+
+
+<details>
+<summary>
+  How often should I train?
+</summary>
+<div class="faq-answer">
+  Consistency matters more than trying
+  to do everything immediately.
+  Talk with your coach about a schedule
+  that fits your goals.
+</div>
+</details>
+
+
+<details>
+<summary>
+  When will I get my next belt?
+</summary>
+<div class="faq-answer">
+  Promotion reflects development over time.
+  Exact academy promotion expectations
+  will be added here.
+</div>
+</details>
+
+
+<details>
+<summary>
+  Do I have to compete?
+</summary>
+<div class="faq-answer">
+  No. Competition is optional.
+  Talk with your coach if you're interested.
+</div>
+</details>
+
+
+<details>
+<summary>
+  How do I register for a tournament?
+</summary>
+<div class="faq-answer">
+  Talk with your coach first.
+  Then use Smoothcomp to find the event
+  and complete your registration.
+</div>
+</details>
+
+
+<details>
+<summary>
+  Where do I buy team gear?
+</summary>
+<div class="faq-answer">
+  Team gear can be purchased through
+  the official Hayabusa Training Centre
+  Shopify store.
+</div>
+</details>
+
+
+<details>
+<summary>
+  What if I miss a class?
+</summary>
+<div class="faq-answer">
+  Return to your regular schedule
+  and ask your coach or teammates
+  if you have questions about
+  what you missed.
+</div>
+</details>
+
+
+<details>
+<summary>
+  What if I'm injured or not feeling well?
+</summary>
+<div class="faq-answer">
+  Tell your coach before training
+  and follow the academy's health
+  and safety expectations.
+</div>
+</details>
+
+
+<details>
+<summary>
+  Who do I ask if my question isn't here?
+</summary>
+<div class="faq-answer">
+  Ask your coach or academy staff.
+  They're there to help you navigate
+  your first weeks of training.
+</div>
+</details>
+
+</div>
+
+</section>
+
+
+<!-- FIRST 30 DAYS -->
+
+<section
+  class="view"
+  data-page="first30"
+>
+
+<div class="kicker">
+  08 — Your First 30 Days
+</div>
+
+<h2 class="title">
+  Build the <span>Habit</span>
+</h2>
+
+<p class="lead">
+  Check these off as you settle
+  into training.
+</p>
+
+
+<label class="check">
+<input type="checkbox">
+<span>
+  I know what to wear to class.
+</span>
+</label>
+
+
+<label class="check">
+<input type="checkbox">
+<span>
+  I understand basic mat etiquette
+  and safety.
+</span>
+</label>
+
+
+<label class="check">
+<input type="checkbox">
+<span>
+  I know who to ask when
+  I have questions.
+</span>
+</label>
+
+
+<label class="check">
+<input type="checkbox">
+<span>
+  I know what disciplines
+  are available.
+</span>
+</label>
+
+
+<label class="check">
+<input type="checkbox">
+<span>
+  I understand that progression
+  takes time.
+</span>
+</label>
+
+
+<label class="check">
+<input type="checkbox">
+<span>
+  I know who to talk to
+  if I want to compete.
+</span>
+</label>
+
+
+<label class="check">
+<input type="checkbox">
+<span>
+  I know where to get team gear.
+</span>
+</label>
+
+
+<div
+  class="count"
+  id="checkCount"
+  aria-live="polite"
+>
+  0 of 7 complete
+</div>
+
+</section>
+
+
+<!-- NAVIGATION -->
+
+<div class="bottom-nav">
+
+<button
+  class="secondary-button"
+  id="previousButton"
+  type="button"
+>
+  ← Previous
+</button>
+
+
+<button
+  class="secondary-button"
+  id="sectionsButton"
+  type="button"
+>
+  ☰ Sections
+</button>
+
+
+<button
+  class="primary-button"
+  id="nextButton"
+  type="button"
+>
+  Next →
+</button>
+
+</div>
+
+</main>
+
+
+<footer>
+
+Hayabusa Training Centre
+· St. Albert, Alberta
+
+<br>
+
+New Student Onboarding
+
+</footer>
+
+</div>
+
+
+<script>
+
+const pageOrder = [
+  "welcome",
+  "gear",
+  "culture",
+  "disciplines",
+  "coaches",
+  "belts",
+  "competition",
+  "store",
+  "faq",
+  "first30"
+];
+
+let currentPage = 0;
+
+const views =
+  document.querySelectorAll(".view");
+
+const menu =
+  document.getElementById("sectionMenu");
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const sectionsButton =
+  document.getElementById("sectionsButton");
+
+const previousButton =
+  document.getElementById("previousButton");
+
+const nextButton =
+  document.getElementById("nextButton");
+
+const progressFill =
+  document.getElementById("progressFill");
+
+
+function showPage(pageName) {
+
+  const pageIndex =
+    pageOrder.indexOf(pageName);
+
+  if (pageIndex === -1) {
+    return;
+  }
+
+  currentPage = pageIndex;
+
+
+  views.forEach(view => {
+
+    view.classList.toggle(
+      "active",
+      view.dataset.page === pageName
+    );
+
+  });
+
+
+  document
+    .querySelectorAll("#sectionMenu button")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "current",
+        button.dataset.view === pageName
+      );
+
+    });
+
+
+  menu.classList.remove("open");
+
+  menuButton.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+
+  const progress =
+    ((currentPage + 1) /
+    pageOrder.length) * 100;
+
+
+  progressFill.style.width =
+    progress + "%";
+
+
+  previousButton.disabled =
+    currentPage === 0;
+
+
+  previousButton.style.opacity =
+    currentPage === 0
+    ? "0.45"
+    : "1";
+
+
+  if (
+    currentPage ===
+    pageOrder.length - 1
+  ) {
+
+    nextButton.textContent =
+      "Back to Welcome";
+
+  } else {
+
+    nextButton.textContent =
+      "Next →";
+
+  }
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function toggleMenu() {
+
+  const open =
+    menu.classList.toggle("open");
+
+
+  menuButton.setAttribute(
+    "aria-expanded",
+    String(open)
+  );
+
+}
+
+
+menuButton.addEventListener(
+  "click",
+  toggleMenu
+);
+
+
+sectionsButton.addEventListener(
+  "click",
+  toggleMenu
+);
+
+
+document
+  .querySelectorAll(
+    "#sectionMenu button"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        showPage(
+          button.dataset.view
+        );
+
+      }
+    );
+
+  });
+
+
+document
+  .querySelectorAll("[data-next]")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        showPage(
+          button.dataset.next
+        );
+
+      }
+    );
+
+  });
+
+
+previousButton.addEventListener(
+  "click",
+  () => {
+
+    if (currentPage > 0) {
+
+      showPage(
+        pageOrder[
+          currentPage - 1
+        ]
+      );
+
+    }
+
+  }
+);
+
+
+nextButton.addEventListener(
+  "click",
+  () => {
+
+    if (
+      currentPage ===
+      pageOrder.length - 1
+    ) {
+
+      showPage("welcome");
+
+    } else {
+
+      showPage(
+        pageOrder[
+          currentPage + 1
+        ]
+      );
+
+    }
+
+  }
+);
+
+
+/* CHECKLIST */
+
+const checks =
+  document.querySelectorAll(
+    ".check input"
+  );
+
+const checkCount =
+  document.getElementById(
+    "checkCount"
+  );
+
+
+checks.forEach(check => {
+
+  check.addEventListener(
+    "change",
+    () => {
+
+      check
+        .closest(".check")
+        .classList.toggle(
+          "complete",
+          check.checked
+        );
+
+
+      const completed =
+        [...checks]
+          .filter(
+            item => item.checked
+          )
+          .length;
+
+
+      checkCount.textContent =
+        completed +
+        " of " +
+        checks.length +
+        " complete";
+
+    }
+  );
+
+});
+
+
+showPage("welcome");
+
+</script>
+
+</body>
+</html>
